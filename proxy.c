@@ -45,11 +45,7 @@ int main(int argc, char const *argv[]) {
     memPartilhada->loss=20;
     memPartilhada->tamanho=0;
 
-    if(fork()==0){
-        processaComandos();
-    }
-
-
+    if(fork()==0) processaComandos();
 
     if (argc != 2) erro("ERROR: Wrong format:\n<proxy port>");
     else if (verifica_comandos(argv[1]) == 0) erro("ERROR: Wrong format:\n<proxy port>");
@@ -208,13 +204,10 @@ void sendFileTcp(char* nomeFicheiro,int proxy_socket_tcp) {
 }
 
 
-
-
 void processaComandos(){
     char buffer[BUF_SIZE];
     int loss;
     while(1){
-
         scanf(" %[^\n]",buffer);
         if(strcasecmp(buffer,"SAVE")==0){
             if(memPartilhada->save==1){
